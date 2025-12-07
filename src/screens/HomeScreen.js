@@ -5,6 +5,7 @@ import { useFocusTimer } from '../hooks/useFocusTimer';
 import { saveSession } from '../hooks/useStorage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Play, Pause, RotateCcw } from 'lucide-react-native';
+import { TimerDisplay } from '../components/TimerDisplay';
 
 export default function HomeScreen() {
     const {
@@ -26,12 +27,6 @@ export default function HomeScreen() {
             handleFinish();
         }
     }, [timeLeft, sessionStarted]);
-
-    const formatTime = (s) => {
-        const min = Math.floor(s / 60);
-        const sec = s % 60;
-        return `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
-    }
 
     const handleFinish = async () => {
         const duration = INITIAL_TIME - timeLeft;
@@ -68,9 +63,7 @@ export default function HomeScreen() {
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Odaklan</Text>
 
-            <View style={styles.timerContainer}>
-                <Text style={styles.timerText}>{formatTime(timeLeft)}</Text>
-            </View>
+            <TimerDisplay seconds={timeLeft} />
 
             <View style={styles.pickerContainer}>
                 <Text style={styles.label}>Kategori Seç:</Text>
@@ -124,12 +117,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#f8f9fa', alignItems: 'center', justifyContent: 'center' },
     title: { fontSize: 32, fontWeight: 'bold', marginBottom: 40, color: '#2d3436' },
-    timerContainer: {
-        width: 260, height: 260, borderRadius: 130, borderWidth: 8, borderColor: '#6c5ce7',
-        justifyContent: 'center', alignItems: 'center', marginBottom: 40, backgroundColor: '#fff',
-        shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 5, elevation: 5
-    },
-    timerText: { fontSize: 64, fontWeight: '700', color: '#2d3436', fontVariant: ['tabular-nums'] },
+    // timer styles removed
     pickerContainer: { width: '85%', marginBottom: 40 },
     label: { fontSize: 16, color: '#636e72', marginBottom: 8, fontWeight: '600' },
     pickerWrapper: { borderWidth: 1, borderColor: '#dfe6e9', borderRadius: 12, backgroundColor: '#fff', overflow: 'hidden' },
