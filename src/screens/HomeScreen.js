@@ -6,6 +6,7 @@ import { saveSession } from '../hooks/useStorage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Play, Pause, RotateCcw } from 'lucide-react-native';
 import { TimerDisplay } from '../components/TimerDisplay';
+import { MotivationalQuote } from '../components/MotivationalQuote';
 
 export default function HomeScreen() {
     const {
@@ -110,6 +111,8 @@ export default function HomeScreen() {
             {distractionCount > 0 && (
                 <Text style={styles.distractionText}>⚠️ Dikkat Dağılması: {distractionCount}</Text>
             )}
+
+            <MotivationalQuote />
         </SafeAreaView>
     );
 }

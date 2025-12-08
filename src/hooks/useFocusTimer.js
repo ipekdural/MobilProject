@@ -41,8 +41,14 @@ export const useFocusTimer = (initialMinutes = 25) => {
     }, [isActive]);
 
     const toggleTimer = useCallback(() => {
-        setIsActive(!isActive);
-    }, [isActive]);
+        if (timeLeft === 0) {
+            setTimeLeft(initialMinutes * 60);
+            setDistractionCount(0);
+            setIsActive(true);
+        } else {
+            setIsActive(!isActive);
+        }
+    }, [isActive, timeLeft, initialMinutes]);
 
     const resetTimer = useCallback(() => {
         setIsActive(false);
