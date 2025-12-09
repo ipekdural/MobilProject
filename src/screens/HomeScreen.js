@@ -97,9 +97,16 @@ export default function HomeScreen() {
                         Alert.alert("Seansı Bitir?", "Veriler kaydedilecek.", [
                             { text: "İptal", style: "cancel" },
                             { text: "Bitir ve Kaydet", onPress: handleFinish },
-                            { text: "Sıfırla (Kaydetme)", onPress: () => { resetTimer(); setSessionStarted(false); } }
+                            {
+                                text: "Sıfırla (Kaydetme)", onPress: () => {
+                                    console.log('Sıfırla (Kaydetme) pressed from Alert');
+                                    resetTimer();
+                                    setSessionStarted(false);
+                                }
+                            }
                         ])
                     } else {
+                        console.log('Reset button pressed directly (no session started)');
                         resetTimer();
                     }
                 }}>

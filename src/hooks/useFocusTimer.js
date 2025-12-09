@@ -51,6 +51,7 @@ export const useFocusTimer = (initialMinutes = 25) => {
     }, [isActive, timeLeft, initialMinutes]);
 
     const resetTimer = useCallback(() => {
+        console.log('resetTimer function called inside hook');
         setIsActive(false);
         setTimeLeft(initialMinutes * 60);
         setDistractionCount(0);
