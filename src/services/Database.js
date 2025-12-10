@@ -1,10 +1,18 @@
 import * as SQLite from 'expo-sqlite';
 
-const db = SQLite.openDatabaseSync('focus_sessions.db');
+let db;
 
-export const initDB = () => {
+const getDB = async () => {
+    if (!db) {
+        db = await SQLite.openDatabaseAsync('focus_sessions.db');
+    }
+    return db;
+};
+
+export const initDB = async () => {
     try {
-        db.execSync(`
+        const database = await getDB();
+        await database.execAsync(`
             CREATE TABLE IF NOT EXISTS sessions (
                 id TEXT PRIMARY KEY,
                 date TEXT NOT NULL,
@@ -19,28 +27,24 @@ export const initDB = () => {
     }
 };
 
-export const insertSession = (session) => {
+export const insertSession = async (session) => {
     try {
+        const database = await getDB();
         const { id, date, category, duration, distractionCount } = session;
-        const statement = db.prepareSync(
-            'INSERT INTO sessions (id, date, category, duration, distractionCount) VALUES ($id, $date, $category, $duration, $distractionCount)'
+        await database.runAsync(
+            'INSERT INTO sessions (id, date, category, duration, distractionCount) VALUES (?, ?, ?, ?, ?)',
+            [id, date, category, duration, distractionCount]
         );
-        statement.executeSync({
-            $id: id,
-            $date: date,
-            $category: category,
-            $duration: duration,
-            $distractionCount: distractionCount
-        });
     } catch (error) {
         console.error("Error inserting session:", error);
         throw error;
     }
 };
 
-export const fetchSessions = () => {
+export const fetchSessions = async () => {
     try {
-        const allRows = db.getAllSync('SELECT * FROM sessions ORDER BY date DESC');
+        const database = await getDB();
+        const allRows = await database.getAllAsync('SELECT * FROM sessions ORDER BY date DESC');
         return allRows;
     } catch (error) {
         console.error("Error fetching sessions:", error);
@@ -48,9 +52,10 @@ export const fetchSessions = () => {
     }
 };
 
-export const clearAllSessions = () => {
+export const clearAllSessions = async () => {
     try {
-        db.execSync('DELETE FROM sessions');
+        const database = await getDB();
+        await database.execAsync('DELETE FROM sessions');
     } catch (error) {
         console.error("Error clearing sessions:", error);
     }

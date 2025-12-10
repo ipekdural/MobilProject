@@ -1,7 +1,7 @@
 import { initDB, insertSession, fetchSessions, clearAllSessions } from '../services/Database';
 
 // Initialize the database immediately
-initDB();
+initDB().catch(e => console.error("DB Init error:", e));
 
 export const saveSession = async (session) => {
     // Adapter to match previous calling convention
@@ -13,14 +13,14 @@ export const saveSession = async (session) => {
     };
 
     // SQLite insert
-    insertSession(newSession);
+    await insertSession(newSession);
 };
 
 export const getSessions = async () => {
     // Return all sessions
-    return fetchSessions();
+    return await fetchSessions();
 }
 
 export const clearSessions = async () => {
-    clearAllSessions();
+    await clearAllSessions();
 }

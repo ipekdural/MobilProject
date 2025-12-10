@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform, Vibration } from 'react-native';
+import * as Notifications from 'expo-notifications';
 import { CategoryPicker } from '../components/CategoryPicker';
 import { useFocusTimer } from '../hooks/useFocusTimer';
 import { saveSession } from '../hooks/useStorage';
@@ -16,21 +17,40 @@ export default function HomeScreen() {
         category,
         setCategory,
         toggleTimer,
-        resetTimer
+        resetTimer,
+        updateTime,
+        selectedDuration
     } = useFocusTimer();
 
     const [sessionStarted, setSessionStarted] = useState(false);
-    const INITIAL_TIME = 25 * 60;
 
-    // Auto-finish when time hits 0
+    // Auto-finish logic...
     useEffect(() => {
         if (timeLeft === 0 && sessionStarted) {
             handleFinish();
         }
     }, [timeLeft, sessionStarted]);
 
+    // Notifications setup
+    useEffect(() => {
+        (async () => {
+            const { status } = await Notifications.requestPermissionsAsync();
+            if (status !== 'granted') {
+                console.log('Notification permissions not granted');
+            }
+        })();
+
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowAlert: true,
+                shouldPlaySound: true,
+                shouldSetBadge: false,
+            }),
+        });
+    }, []);
+
     const handleFinish = async () => {
-        const duration = INITIAL_TIME - timeLeft;
+        const duration = (selectedDuration * 60) - timeLeft;
 
         // Prevent saving 0 duration sessions
         if (duration < 5) {
@@ -50,6 +70,16 @@ export default function HomeScreen() {
 
         if (Platform.OS !== 'web') {
             Vibration.vibrate();
+
+            // Schedule local notification
+            await Notifications.scheduleNotificationAsync({
+                content: {
+                    title: "Seans Bitti! 🎉",
+                    body: `Kategori: ${category} - Tebrikler!`,
+                    sound: true,
+                },
+                trigger: null, // Show immediately
+            });
         }
 
         Alert.alert(
@@ -64,11 +94,33 @@ export default function HomeScreen() {
         );
     };
 
+    const DURATIONS = [1, 15, 25, 45, 60];
+
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Odaklan</Text>
 
-            <TimerDisplay seconds={timeLeft} />
+            <TimerDisplay seconds={timeLeft} totalDuration={selectedDuration * 60} />
+
+            {/* Duration Selector */}
+            <View style={styles.durationContainer}>
+                {DURATIONS.map((dur) => (
+                    <TouchableOpacity
+                        key={dur}
+                        style={[
+                            styles.durationButton,
+                            selectedDuration === dur && styles.durationButtonActive
+                        ]}
+                        onPress={() => !isActive && updateTime(dur)}
+                        disabled={isActive || sessionStarted}
+                    >
+                        <Text style={[
+                            styles.durationText,
+                            selectedDuration === dur && styles.durationTextActive
+                        ]}>{dur}dk</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
 
             <View style={styles.pickerContainer}>
                 <Text style={styles.label}>Kategori Seç:</Text>
@@ -91,7 +143,6 @@ export default function HomeScreen() {
                 <TouchableOpacity style={[styles.button, styles.resetButton]} onPress={() => {
                     if (Platform.OS === 'web') {
                         if (sessionStarted) {
-                            // Simple confirm for web
                             if (window.confirm("Seansı bitirip kaydetmek istiyor musunuz? İptal derseniz süre sıfırlanır ancak kaydedilmez.")) {
                                 handleFinish();
                             } else {
@@ -102,7 +153,6 @@ export default function HomeScreen() {
                             resetTimer();
                         }
                     } else {
-                        // Mobile Alert
                         if (sessionStarted) {
                             Alert.alert("Seansı Bitir?", "Veriler kaydedilecek.", [
                                 { text: "İptal", style: "cancel" },
@@ -135,18 +185,37 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#fdfdfd', alignItems: 'center', justifyContent: 'center', paddingBottom: 80 },
-    title: { fontSize: 24, fontWeight: '600', marginBottom: 30, color: '#b2bec3', letterSpacing: 1.5, textTransform: 'uppercase' },
+    title: { fontSize: 24, fontWeight: '600', marginBottom: 20, color: '#b2bec3', letterSpacing: 1.5, textTransform: 'uppercase' },
+
+    durationContainer: { flexDirection: 'row', gap: 10, marginBottom: 25 },
+    durationButton: {
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        borderRadius: 20,
+        backgroundColor: '#f1f2f6',
+        borderWidth: 1,
+        borderColor: '#dfe6e9'
+    },
+    durationButtonActive: {
+        backgroundColor: '#e84393', // Pink active
+        borderColor: '#e84393'
+    },
+    durationText: { color: '#636e72', fontWeight: '600' },
+    durationTextActive: { color: '#fff' },
+
+    pickerContainer: { marginBottom: 30, alignItems: 'center' },
+    label: { marginBottom: 10, color: '#b2bec3', fontWeight: '500' },
 
     controls: { flexDirection: 'row', gap: 20 },
     button: {
         flexDirection: 'row',
-        backgroundColor: '#6c5ce7',
+        backgroundColor: '#e84393', // Pink
         paddingVertical: 18,
         paddingHorizontal: 32,
         borderRadius: 30,
         alignItems: 'center',
         gap: 10,
-        shadowColor: "#6c5ce7",
+        shadowColor: "#e84393",
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.3,
         shadowRadius: 10,

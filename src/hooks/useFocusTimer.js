@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { AppState } from 'react-native';
 
 export const useFocusTimer = (initialMinutes = 25) => {
+    const [selectedDuration, setSelectedDuration] = useState(initialMinutes);
     const [timeLeft, setTimeLeft] = useState(initialMinutes * 60);
     const [isActive, setIsActive] = useState(false);
     const [distractionCount, setDistractionCount] = useState(0);
@@ -42,29 +43,31 @@ export const useFocusTimer = (initialMinutes = 25) => {
 
     const toggleTimer = useCallback(() => {
         if (timeLeft === 0) {
-            setTimeLeft(initialMinutes * 60);
+            setTimeLeft(selectedDuration * 60);
             setDistractionCount(0);
             setIsActive(true);
         } else {
             setIsActive(!isActive);
         }
-    }, [isActive, timeLeft, initialMinutes]);
+    }, [isActive, timeLeft, selectedDuration]);
 
     const resetTimer = useCallback(() => {
         console.log('resetTimer function called inside hook');
         setIsActive(false);
-        setTimeLeft(initialMinutes * 60);
+        setTimeLeft(selectedDuration * 60);
         setDistractionCount(0);
-    }, [initialMinutes]);
+    }, [selectedDuration]);
 
     const updateTime = useCallback((minutes) => {
         setIsActive(false);
+        setSelectedDuration(minutes);
         setTimeLeft(minutes * 60);
         setDistractionCount(0);
     }, [])
 
     return {
         timeLeft,
+        selectedDuration,
         isActive,
         distractionCount,
         category,

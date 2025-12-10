@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         padding: 5
     },
     doneButtonText: {
-        color: '#007AFF',
+        color: '#e84393',
         fontSize: 18,
         fontWeight: '600'
     },

@@ -60,13 +60,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: "#6c5ce7",
+        shadowColor: "#e84393",
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 10,
         elevation: 4,
         borderLeftWidth: 6,
-        borderLeftColor: '#6c5ce7'
+        borderLeftColor: '#e84393'
     },
     text: {
         fontSize: 16,
