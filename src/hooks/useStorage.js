@@ -1,36 +1,26 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { initDB, insertSession, fetchSessions, clearAllSessions } from '../services/Database';
 
-const STORAGE_KEY = 'FOCUS_SESSIONS';
+// Initialize the database immediately
+initDB();
 
 export const saveSession = async (session) => {
-    try {
-        const existing = await AsyncStorage.getItem(STORAGE_KEY);
-        const sessions = existing ? JSON.parse(existing) : [];
-        sessions.push({
-            id: Date.now().toString(),
-            date: new Date().toISOString(),
-            ...session
-        });
-        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
-    } catch (e) {
-        console.error("Failed to save session", e);
-    }
+    // Adapter to match previous calling convention
+    // session object comes in without id and full date usually, or we can handle construction here
+    const newSession = {
+        id: Date.now().toString(),
+        date: new Date().toISOString(),
+        ...session
+    };
+
+    // SQLite insert
+    insertSession(newSession);
 };
 
 export const getSessions = async () => {
-    try {
-        const existing = await AsyncStorage.getItem(STORAGE_KEY);
-        return existing ? JSON.parse(existing) : [];
-    } catch (e) {
-        console.error("Failed to load sessions", e);
-        return [];
-    }
+    // Return all sessions
+    return fetchSessions();
 }
 
 export const clearSessions = async () => {
-    try {
-        await AsyncStorage.removeItem(STORAGE_KEY);
-    } catch (e) {
-        console.error(e);
-    }
+    clearAllSessions();
 }
