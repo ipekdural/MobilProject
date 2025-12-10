@@ -132,10 +132,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#fdfdfd', alignItems: 'center', justifyContent: 'center', paddingBottom: 80 },
     title: { fontSize: 24, fontWeight: '600', marginBottom: 30, color: '#b2bec3', letterSpacing: 1.5, textTransform: 'uppercase' },
-    // timer styles removed
-    pickerContainer: { width: '85%', marginBottom: 50 },
-    label: { fontSize: 14, color: '#b2bec3', marginBottom: 12, fontWeight: '600', marginLeft: 4, letterSpacing: 0.5 },
-    // picker styles moved to component
+
     controls: { flexDirection: 'row', gap: 20 },
     button: {
         flexDirection: 'row',
