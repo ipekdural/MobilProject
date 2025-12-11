@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useFocusTimer } from '../hooks/useFocusTimer';
 import { saveSession } from '../hooks/useStorage';
@@ -93,21 +93,34 @@ export default function HomeScreen() {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={[styles.button, styles.resetButton]} onPress={() => {
-                    if (sessionStarted) {
-                        Alert.alert("Seansı Bitir?", "Veriler kaydedilecek.", [
-                            { text: "İptal", style: "cancel" },
-                            { text: "Bitir ve Kaydet", onPress: handleFinish },
-                            {
-                                text: "Sıfırla (Kaydetme)", onPress: () => {
-                                    console.log('Sıfırla (Kaydetme) pressed from Alert');
-                                    resetTimer();
-                                    setSessionStarted(false);
-                                }
+                    if (Platform.OS === 'web') {
+                        if (sessionStarted) {
+                            // Simple confirm for web
+                            if (window.confirm("Seansı bitirip kaydetmek istiyor musunuz? İptal derseniz süre sıfırlanır ancak kaydedilmez.")) {
+                                handleFinish();
+                            } else {
+                                resetTimer();
+                                setSessionStarted(false);
                             }
-                        ])
+                        } else {
+                            resetTimer();
+                        }
                     } else {
-                        console.log('Reset button pressed directly (no session started)');
-                        resetTimer();
+                        // Mobile Alert
+                        if (sessionStarted) {
+                            Alert.alert("Seansı Bitir?", "Veriler kaydedilecek.", [
+                                { text: "İptal", style: "cancel" },
+                                { text: "Bitir ve Kaydet", onPress: handleFinish },
+                                {
+                                    text: "Sıfırla (Kaydetme)", onPress: () => {
+                                        resetTimer();
+                                        setSessionStarted(false);
+                                    }
+                                }
+                            ]);
+                        } else {
+                            resetTimer();
+                        }
                     }
                 }}>
                     <RotateCcw color="#636e72" size={24} />
