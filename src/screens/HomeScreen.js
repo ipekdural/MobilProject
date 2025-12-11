@@ -110,8 +110,8 @@ export default function HomeScreen() {
                         resetTimer();
                     }
                 }}>
-                    <RotateCcw color="#fff" size={24} />
-                    <Text style={styles.buttonText}>Sıfırla</Text>
+                    <RotateCcw color="#636e72" size={24} />
+                    <Text style={[styles.buttonText, { color: '#636e72' }]}>Sıfırla</Text>
                 </TouchableOpacity>
             </View>
 
@@ -125,20 +125,42 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#f8f9fa', alignItems: 'center', justifyContent: 'center' },
-    title: { fontSize: 32, fontWeight: 'bold', marginBottom: 40, color: '#2d3436' },
+    container: { flex: 1, backgroundColor: '#fdfdfd', alignItems: 'center', justifyContent: 'center', paddingBottom: 80 },
+    title: { fontSize: 24, fontWeight: '600', marginBottom: 30, color: '#b2bec3', letterSpacing: 1.5, textTransform: 'uppercase' },
     // timer styles removed
-    pickerContainer: { width: '85%', marginBottom: 40 },
-    label: { fontSize: 16, color: '#636e72', marginBottom: 8, fontWeight: '600' },
-    pickerWrapper: { borderWidth: 1, borderColor: '#dfe6e9', borderRadius: 12, backgroundColor: '#fff', overflow: 'hidden' },
-    picker: { height: 55 },
+    pickerContainer: { width: '85%', marginBottom: 50 },
+    label: { fontSize: 14, color: '#b2bec3', marginBottom: 12, fontWeight: '600', marginLeft: 4, letterSpacing: 0.5 },
+    pickerWrapper: {
+        borderWidth: 0,
+        borderRadius: 20,
+        backgroundColor: '#f1f2f6',
+        overflow: 'hidden',
+        height: 60,
+        justifyContent: 'center'
+    },
+    picker: { height: 60, color: '#2d3436' },
     controls: { flexDirection: 'row', gap: 20 },
     button: {
-        flexDirection: 'row', backgroundColor: '#6c5ce7', paddingVertical: 14, paddingHorizontal: 28,
-        borderRadius: 16, alignItems: 'center', gap: 8,
-        shadowColor: "#6c5ce7", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 3, elevation: 3
+        flexDirection: 'row',
+        backgroundColor: '#6c5ce7',
+        paddingVertical: 18,
+        paddingHorizontal: 32,
+        borderRadius: 30,
+        alignItems: 'center',
+        gap: 10,
+        shadowColor: "#6c5ce7",
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        elevation: 6
     },
-    resetButton: { backgroundColor: '#ff7675', shadowColor: "#ff7675" },
-    buttonText: { color: '#fff', fontSize: 18, fontWeight: '600' },
-    distractionText: { marginTop: 25, color: '#d63031', fontSize: 16, fontWeight: '600' }
+    resetButton: {
+        backgroundColor: '#fff',
+        shadowColor: "#b2bec3",
+        borderWidth: 1,
+        borderColor: '#dfe6e9',
+        elevation: 2
+    },
+    buttonText: { color: '#fff', fontSize: 18, fontWeight: '600', letterSpacing: 0.5 },
+    distractionText: { marginTop: 25, color: '#ff7675', fontSize: 16, fontWeight: '600' }
 });

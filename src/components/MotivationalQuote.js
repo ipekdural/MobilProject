@@ -52,26 +52,28 @@ export const MotivationalQuote = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#e3f2fd', // Light blue background
-        padding: 15,
-        borderRadius: 12,
-        marginVertical: 20,
+        backgroundColor: '#fff',
+        paddingVertical: 20,
+        paddingHorizontal: 24,
+        borderRadius: 20,
+        marginVertical: 25,
         marginHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
+        shadowColor: "#6c5ce7",
+        shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 2,
-        borderLeftWidth: 4,
-        borderLeftColor: '#0984e3'
+        shadowRadius: 10,
+        elevation: 4,
+        borderLeftWidth: 6,
+        borderLeftColor: '#6c5ce7'
     },
     text: {
-        fontSize: 14,
+        fontSize: 16,
         fontStyle: 'italic',
-        color: '#2d3436',
+        color: '#636e72',
         textAlign: 'center',
-        fontWeight: '500'
+        fontWeight: '500',
+        lineHeight: 24
     }
 });

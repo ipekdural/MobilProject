@@ -182,19 +182,35 @@ export default function ReportsScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#f8f9fa' },
-    header: { fontSize: 28, fontWeight: 'bold', padding: 20, color: '#2d3436' },
-    scrollContent: { paddingHorizontal: 20, paddingBottom: 40 },
-    statsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
+    container: { flex: 1, backgroundColor: '#fdfdfd' },
+    header: { fontSize: 34, fontWeight: '800', padding: 25, color: '#2d3436', paddingTop: 40 },
+    scrollContent: { paddingHorizontal: 25, paddingBottom: 100 },
+    statsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 25, gap: 12 },
     statCard: {
-        backgroundColor: '#fff', borderRadius: 12, padding: 15, flex: 1, marginHorizontal: 5,
-        alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, elevation: 2
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        padding: 20,
+        flex: 1,
+        alignItems: 'center',
+        shadowColor: '#6c5ce7',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.08,
+        shadowRadius: 10,
+        elevation: 4
     },
-    statValue: { fontSize: 18, fontWeight: '700', color: '#2d3436', marginBottom: 4 },
-    statLabel: { fontSize: 12, color: '#636e72' },
+    statValue: { fontSize: 20, fontWeight: '700', color: '#2d3436', marginBottom: 6 },
+    statLabel: { fontSize: 13, color: '#b2bec3', fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.5 },
     chartContainer: {
-        backgroundColor: '#fff', borderRadius: 16, padding: 15, marginBottom: 20,
-        alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, elevation: 2
+        backgroundColor: '#fff',
+        borderRadius: 24,
+        padding: 20,
+        marginBottom: 25,
+        alignItems: 'center',
+        shadowColor: '#6c5ce7',
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.05,
+        shadowRadius: 15,
+        elevation: 3
     },
-    chartTitle: { fontSize: 16, fontWeight: '600', marginBottom: 15, color: '#2d3436', alignSelf: 'flex-start' }
+    chartTitle: { fontSize: 18, fontWeight: '700', marginBottom: 20, color: '#2d3436', alignSelf: 'flex-start', marginLeft: 10 }
 });

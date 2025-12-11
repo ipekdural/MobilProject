@@ -17,9 +17,26 @@ export const TimerDisplay = ({ seconds }) => {
 
 const styles = StyleSheet.create({
     timerContainer: {
-        width: 260, height: 260, borderRadius: 130, borderWidth: 8, borderColor: '#6c5ce7',
-        justifyContent: 'center', alignItems: 'center', marginBottom: 40, backgroundColor: '#fff',
-        shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 5, elevation: 5
+        width: 280,
+        height: 280,
+        borderRadius: 140,
+        borderWidth: 6,
+        borderColor: '#a29bfe', // Softer purple
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 50,
+        backgroundColor: '#fff',
+        shadowColor: "#6c5ce7",
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.2,
+        shadowRadius: 15,
+        elevation: 8,
     },
-    timerText: { fontSize: 64, fontWeight: '700', color: '#2d3436', fontVariant: ['tabular-nums'] },
+    timerText: {
+        fontSize: 72,
+        fontWeight: '300', // Lighter font weight for modern look
+        color: '#2d3436',
+        fontVariant: ['tabular-nums'],
+        letterSpacing: 2
+    },
 });
