@@ -47,7 +47,8 @@ export function CategoryPicker({ selectedCategory, onCategoryChange, enabled = t
                             <Picker
                                 selectedValue={selectedCategory}
                                 onValueChange={(itemValue) => onCategoryChange(itemValue)}
-                                style={styles.picker}
+                                style={styles.iosPicker}
+                                itemStyle={{ fontSize: 20, color: '#2d3436', height: 215 }}
                             >
                                 {items.map((item) => (
                                     <Picker.Item key={item} label={item} value={item} />
@@ -127,5 +128,9 @@ const styles = StyleSheet.create({
         color: '#007AFF',
         fontSize: 18,
         fontWeight: '600'
+    },
+    iosPicker: {
+        height: 215,
+        width: '100%'
     }
 });
