@@ -79,6 +79,8 @@ export default function HomeScreen() {
                         <Picker.Item label="Kodlama" value="Kodlama" />
                         <Picker.Item label="Proje" value="Proje" />
                         <Picker.Item label="Kitap Okuma" value="Kitap Okuma" />
+                        <Picker.Item label="Spor" value="Spor" />
+                        <Picker.Item label="Diğer" value="Diğer" />
                     </Picker>
                 </View>
             </View>
