@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform, Vibration } from 'react-native';
 import { CategoryPicker } from '../components/CategoryPicker';
 import { useFocusTimer } from '../hooks/useFocusTimer';
 import { saveSession } from '../hooks/useStorage';
@@ -48,8 +48,12 @@ export default function HomeScreen() {
 
         await saveSession(sessionData);
 
+        if (Platform.OS !== 'web') {
+            Vibration.vibrate();
+        }
+
         Alert.alert(
-            "Seans Özeti",
+            "Seans Bitti! 🎉",
             `Kategori: ${category}\nSüre: ${Math.floor(duration / 60)} dk ${duration % 60} sn\nDikkat Dağılması: ${distractionCount}`,
             [{
                 text: "Tamam", onPress: () => {
