@@ -82,11 +82,5 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
    - **Android:** `a` tuşuna basın veya Expo Go uygulaması ile QR kodu taratın.
    - **iOS:** `i` tuşuna basın veya Expo Go uygulaması ile QR kodu taratın.
 
-## 🤝 Katkıda Bulunma
 
-1. Bu projeyi fork'layın.
-2. Yeni bir özellik dalı oluşturun (`git checkout -b feature/AmazingFeature`).
-3. Değişikliklerinizi commit'leyin (`git commit -m 'Add some AmazingFeature'`).
-4. Dalınıza push'layın (`git push origin feature/AmazingFeature`).
-5. Bir Pull Request oluşturun.
 
