@@ -1,15 +1,63 @@
-# Mobil Odaklanma Projesi
+# Mobil Odaklanma Projesi 🎯
 
-Bu proje, React Native ve Expo kullanılarak geliştirilmiş, kullanıcıların odaklanma sürelerini yönetmelerini sağlayan bir mobil uygulamadır.
+Bu proje, React Native ve Expo kullanılarak geliştirilmiş, kullanıcıların odaklanma sürelerini yönetmelerini, dikkat dağınıklıklarını takip etmelerini ve verimliliklerini analiz etmelerini sağlayan kapsamlı bir mobil uygulamadır.
 
-## Özellikler
+## 🚀 Özellikler
 
-- ⏱ **Odaklanma Zamanlayıcısı:** Özelleştirilebilir sürelerle çalışma seansları.
-- 📊 **Raporlama:** Geçmiş çalışma oturumları ve istatistikler.
-- 🧩 **Dikkat Dağınıklığı Takibi:** Dikkatinizin neden dağıldığını kaydedin ve analiz edin.
-- 💡 **Motivasyon:** Çalışırken motive edici sözler.
+### ⏱ Odaklanma Zamanlayıcısı
+- Özelleştirilebilir çalışma süreleri belirleyin.
+- Oturum sırasında kalan süreyi görsel olarak takip edin (`TimerDisplay` bileşeni).
+- Zamanlayıcıyı başlatın, duraklatın ve sıfırlayın.
 
-## Kurulum ve Çalıştırma
+### 📊 Detaylı Raporlama
+- **Grafikler:** `react-native-chart-kit` kullanılarak oluşturulan görsel grafiklerle performansınızı analiz edin.
+- **İstatistikler:** Tamamlanan oturum sayıları, toplam odaklanma süresi ve başarı oranları.
+- Geçmiş oturumların detaylı listesi.
+
+### 🧩 Dikkat Dağınıklığı Takibi
+- Çalışma seansı sırasında dikkatinizi dağıtan unsurları anlık olarak kaydedin.
+- Hangi faktörlerin verimliliğinizi etkilediğini raporlar ekranında görün.
+
+### 💡 Motivasyon Desteği
+- Her oturumda sizi motive edecek rastgele sözler (`MotivationalQuote` bileşeni).
+- Çalışma azminizi artıracak kullanıcı dostu arayüz.
+
+### 💾 Veri Saklama
+- Tüm çalışma verileriniz ve ayarlarınız `AsyncStorage` kullanılarak cihazınızda güvenle saklanır.
+- Uygulamayı kapatıp açsanız bile verileriniz kaybolmaz.
+
+## 🛠 Kullanılan Teknolojiler
+
+Bu proje aşağıdaki modern teknolojiler ve kütüphaneler kullanılarak geliştirilmiştir:
+
+- **React Native & Expo:** Çapraz platform mobil uygulama geliştirme.
+- **React Navigation:** Uygulama içi akıcı gezinme (Bottom Tabs).
+- **Async Storage:** Yerel veri depolama çözümü.
+- **React Native Chart Kit:** Veri görselleştirme ve grafikler.
+- **Lucide React Native:** Modern ve şık ikon setleri.
+- **React Hooks:** Özelleştirilmiş hook'lar (`useFocusTimer`, `useStorage`) ile temiz kod yapısı.
+
+## 📂 Proje Yapısı
+
+Proje, sürdürülebilirlik ve genişletilebilirlik gözetilerek modüler bir yapıda düzenlenmiştir:
+
+```
+mobil_proje/
+├── App.js                  # Ana uygulama giriş noktası ve navigasyon yapılandırması
+├── src/
+│   ├── screens/            # Uygulama ekranları
+│   │   ├── HomeScreen.js     # Ana odaklanma ekranı
+│   │   └── ReportsScreen.js  # İstatistik ve rapor ekranı
+│   ├── components/         # Yeniden kullanılabilir UI bileşenleri
+│   │   ├── TimerDisplay.js   # Sayaç göstergesi
+│   │   └── MotivationalQuote.js # Motivasyon sözleri kartı
+│   └── hooks/              # Mantıksal işlemler için özel hook'lar
+│       ├── useFocusTimer.js  # Zamanlayıcı mantığı
+│       └── useStorage.js     # Veri okuma/yazma işlemleri
+└── package.json            # Proje bağımlılıkları ve script'ler
+```
+
+## 🏁 Kurulum ve Çalıştırma
 
 Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
 
@@ -34,10 +82,11 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
    - **Android:** `a` tuşuna basın veya Expo Go uygulaması ile QR kodu taratın.
    - **iOS:** `i` tuşuna basın veya Expo Go uygulaması ile QR kodu taratın.
 
-## Proje Yapısı
+## 🤝 Katkıda Bulunma
 
-- `src/screens`: Uygulama ekranları (Ana Sayfa, Raporlar).
-- `src/components`: Yeniden kullanılabilir bileşenler.
-- `src/hooks`: Mantıksal işlemler için özel hook'lar.
-- `PROJE_RAPORU.md`: Detaylı proje raporu.
+1. Bu projeyi fork'layın.
+2. Yeni bir özellik dalı oluşturun (`git checkout -b feature/AmazingFeature`).
+3. Değişikliklerinizi commit'leyin (`git commit -m 'Add some AmazingFeature'`).
+4. Dalınıza push'layın (`git push origin feature/AmazingFeature`).
+5. Bir Pull Request oluşturun.
 
