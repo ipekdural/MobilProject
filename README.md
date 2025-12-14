@@ -1,46 +1,46 @@
-# Odaklanma Mobil Uygulaması (Focus Tracker)
+# Mobil Odaklanma Projesi
 
-Bu proje, kullanıcının odaklanma seanslarını takip etmesini sağlayan ve dikkat dağınıklığını ölçen bir mobil uygulamadır.
+Bu proje, React Native ve Expo kullanılarak geliştirilmiş, kullanıcıların odaklanma sürelerini yönetmelerini sağlayan bir mobil uygulamadır.
 
 ## Özellikler
 
-- **Zamanlayıcı (Pomodoro):** 25 dakikalık geri sayım (ayarlanabilir).
-- **Dikkat Dağılması Takibi:** Uygulama arka plana atıldığında (örn. başka uygulamaya geçildiğinde) sayaç durur ve dikkat dağılması olarak kaydedilir.
-- **Raporlar ve İstatistikler:**
-  - Günlük ve Toplam Odaklanma Süreleri
-  - Grafiksel Gösterim (Son 7 gün, Kategori Dağılımı)
-- **Kategori Yönetimi:** Çalışma, Kodlama, Kitap gibi kategoriler seçilebilir.
+- ⏱ **Odaklanma Zamanlayıcısı:** Özelleştirilebilir sürelerle çalışma seansları.
+- 📊 **Raporlama:** Geçmiş çalışma oturumları ve istatistikler.
+- 🧩 **Dikkat Dağınıklığı Takibi:** Dikkatinizin neden dağıldığını kaydedin ve analiz edin.
+- 💡 **Motivasyon:** Çalışırken motive edici sözler.
 
 ## Kurulum ve Çalıştırma
 
-Bu projeyi çalıştırmak için bilgisayarınızda Node.js ve npm yüklü olmalıdır.
+Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
 
-1. **Bağımlılıkları Yükleyin:**
-   Proje dizininde terminali açın ve aşağıdaki komutu çalıştırın:
+1. **Repoyu Klonlayın:**
+   ```bash
+   git clone <REPO_URL>
+   cd mobil_proje
+   ```
+
+2. **Bağımlılıkları Yükleyin:**
    ```bash
    npm install
    ```
 
-2. **Uygulamayı Başlatın:**
+3. **Uygulamayı Başlatın:**
    ```bash
-   npx expo start
+   npm start
    ```
+   Bu komut Expo geliştirici araçlarını başlatacaktır.
 
-3. **Telefonda Çalıştırma:**
-   - **Expo Go** uygulamasını telefonunuza indirin (App Store veya Google Play).
-   - Terminalde çıkan QR kodunu Expo Go uygulaması ile taratın.
-   - iOS Simülatör için 'i', Android Emülatör için 'a' tuşuna basabilirsiniz.
-
-## Kullanılan Teknolojiler
-
-- React Native (Expo)
-- React Navigation (Bottom Tabs)
-- AsyncStorage (Veri Saklama)
-- react-native-chart-kit (Grafikler)
-- Lucide React Native (İkonlar)
+4. **Cihazda Çalıştırın:**
+   - **Android:** `a` tuşuna basın veya Expo Go uygulaması ile QR kodu taratın.
+   - **iOS:** `i` tuşuna basın veya Expo Go uygulaması ile QR kodu taratın.
 
 ## Proje Yapısı
 
-- `App.js`: Ana navigasyon yapısı.
-- `src/screens/`: Ekranlar (HomeScreen, ReportsScreen).
-- `src/hooks/`: Mantıksal kancalar (Timer, Storage).
+- `src/screens`: Uygulama ekranları (Ana Sayfa, Raporlar).
+- `src/components`: Yeniden kullanılabilir bileşenler.
+- `src/hooks`: Mantıksal işlemler için özel hook'lar.
+- `PROJE_RAPORU.md`: Detaylı proje raporu.
+
+## Lisans
+
+Bu proje MIT lisansı ile lisanslanmıştır.
