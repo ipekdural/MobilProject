@@ -15,7 +15,7 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
 
 1. **Repoyu Klonlayın:**
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/ipekdural/MobilProject
    cd mobil_proje
    ```
 
@@ -26,7 +26,7 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
 
 3. **Uygulamayı Başlatın:**
    ```bash
-   npm start
+   npx expo start
    ```
    Bu komut Expo geliştirici araçlarını başlatacaktır.
 
@@ -41,6 +41,3 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyi
 - `src/hooks`: Mantıksal işlemler için özel hook'lar.
 - `PROJE_RAPORU.md`: Detaylı proje raporu.
 
-## Lisans
-
-Bu proje MIT lisansı ile lisanslanmıştır.
