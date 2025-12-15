@@ -1,4 +1,4 @@
-# Mobil Odaklanma Projesi 🎯
+ # Mobil Odaklanma Projesi 🎯
 
 Bu proje, React Native ve Expo kullanılarak geliştirilmiş, kullanıcıların odaklanma sürelerini yönetmelerini, dikkat dağınıklıklarını takip etmelerini ve verimliliklerini analiz etmelerini sağlayan kapsamlı bir mobil uygulamadır.
 
