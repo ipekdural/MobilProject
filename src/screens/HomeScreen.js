@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import { CategoryPicker } from '../components/CategoryPicker';
 import { useFocusTimer } from '../hooks/useFocusTimer';
 import { saveSession } from '../hooks/useStorage';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -68,21 +68,11 @@ export default function HomeScreen() {
 
             <View style={styles.pickerContainer}>
                 <Text style={styles.label}>Kategori Seç:</Text>
-                <View style={styles.pickerWrapper}>
-                    <Picker
-                        selectedValue={category}
-                        onValueChange={(itemValue) => setCategory(itemValue)}
-                        enabled={!isActive}
-                        style={styles.picker}
-                    >
-                        <Picker.Item label="Ders Çalışma" value="Ders Çalışma" />
-                        <Picker.Item label="Kodlama" value="Kodlama" />
-                        <Picker.Item label="Proje" value="Proje" />
-                        <Picker.Item label="Kitap Okuma" value="Kitap Okuma" />
-                        <Picker.Item label="Spor" value="Spor" />
-                        <Picker.Item label="Diğer" value="Diğer" />
-                    </Picker>
-                </View>
+                <CategoryPicker
+                    selectedCategory={category}
+                    onCategoryChange={setCategory}
+                    enabled={!isActive}
+                />
             </View>
 
             <View style={styles.controls}>
@@ -145,15 +135,7 @@ const styles = StyleSheet.create({
     // timer styles removed
     pickerContainer: { width: '85%', marginBottom: 50 },
     label: { fontSize: 14, color: '#b2bec3', marginBottom: 12, fontWeight: '600', marginLeft: 4, letterSpacing: 0.5 },
-    pickerWrapper: {
-        borderWidth: 0,
-        borderRadius: 20,
-        backgroundColor: '#f1f2f6',
-        overflow: 'hidden',
-        height: 60,
-        justifyContent: 'center'
-    },
-    picker: { height: 60, color: '#2d3436' },
+    // picker styles moved to component
     controls: { flexDirection: 'row', gap: 20 },
     button: {
         flexDirection: 'row',
